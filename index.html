@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173b32" />
+    <meta
+      name="description"
+      content="Submit faculty clearance requests, track departmental approvals, and manage outstanding requirements in one organized portal."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Faculty Clearance Management System | FCMS"
+    />
+    <meta
+      property="og:description"
+      content="A clear, organized way to submit and track faculty clearance requests and departmental approvals."
+    />
+    <meta
+      property="og:site_name"
+      content="Faculty Clearance Management System"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Faculty Clearance Management System | FCMS"
+    />
+    <meta
+      name="twitter:description"
+      content="Submit and track faculty clearance requests and departmental approvals in one portal."
+    />
+    <title>Faculty Clearance Management System | FCMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Faculty Clearance Management System",
+        "alternateName": "FCMS",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "A portal for submitting faculty clearance requests and tracking departmental approvals."
+      }
+    </script>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#overview"
+          ><span class="brand-icon">F</span
+          ><span><b>FCMS</b><small>FACULTY CLEARANCE</small></span></a
+        >
+        <div class="institution">
+          <span class="seal">U</span
+          ><span><b>University Portal</b><small>Academic services</small></span>
+        </div>
+        <p class="nav-label">CLEARANCE</p>
+        <nav aria-label="Main navigation">
+          <a class="nav-link active" href="#overview" data-page="Overview"
+            ><span>◫</span>Overview</a
+          >
+          <a class="nav-link" href="#requests" data-page="Requests"
+            ><span>▤</span>My requests<i id="pending-nav">8</i></a
+          >
+          <a class="nav-link" href="#departments" data-page="Departments"
+            ><span>⌂</span>Departments</a
+          >
+          <a class="nav-link" href="#requirements" data-page="Requirements"
+            ><span>☷</span>Requirements</a
+          >
+        </nav>
+        <p class="nav-label nav-gap">ADMINISTRATION</p>
+        <nav aria-label="Administration navigation">
+          <a class="nav-link" href="#reports" data-page="Reports"
+            ><span>▥</span>Reports</a
+          >
+          <a class="nav-link" href="#settings" data-page="Settings"
+            ><span>⚙</span>Settings</a
+          >
+        </nav>
+        <div class="sidebar-bottom">
+          <p>ACADEMIC YEAR <b>2025 / 2026</b></p>
+          <button class="profile" id="profile-button">
+            <span>JD</span
+            ><b>Jordan Davis<small>Faculty administrator</small></b>
+          </button>
+        </div>
+      </aside>
+
+      <main id="overview">
+        <header class="topbar">
+          <button
+            class="menu-button"
+            id="menu-button"
+            aria-label="Open navigation"
+          >
+            ☰
+          </button>
+          <div class="crumb">
+            Academic services <span>/</span> <b id="page-title">Overview</b>
+          </div>
+          <div class="top-actions">
+            <time>THURSDAY, 16 OCTOBER 2025</time
+            ><button class="bell" id="notifications" aria-label="Notifications">
+              ♧<i></i>
+            </button>
+          </div>
+        </header>
+        <div class="content">
+          <section class="welcome">
+            <div>
+              <p class="eyebrow">
+                ● &nbsp;CLEARANCE WORKSPACE &nbsp;/&nbsp; FALL SEMESTER
+              </p>
+              <h1>Good morning, Jordan<span>.</span></h1>
+              <p>Your faculty clearance activity, all in one place.</p>
+            </div>
+            <button class="primary-button" id="new-request">
+              <span>＋</span> New clearance request
+            </button>
+          </section>
+
+          <section class="deadline" id="deadline">
+            <span class="alert-icon">!</span>
+            <p>
+              <b>Fall semester clearance is underway.</b> Submit outstanding
+              requests by <strong>November 14, 2025</strong> to allow time for
+              departmental review.
+            </p>
+            <button id="dismiss-deadline" aria-label="Dismiss notice">×</button>
+          </section>
+
+          <section class="stats" aria-label="Clearance request summary">
+            <article class="stat">
+              <div>TOTAL REQUESTS <span class="stat-icon green">▤</span></div>
+              <strong id="total-count">24</strong
+              ><small><em>↑ 6</em> this semester</small
+              ><i class="progress green-bar"></i>
+            </article>
+            <article class="stat">
+              <div>PENDING REVIEW <span class="stat-icon amber">◷</span></div>
+              <strong id="pending-count">08</strong
+              ><small>Across 4 departments</small
+              ><i class="progress amber-bar"></i>
+            </article>
+            <article class="stat">
+              <div>APPROVED <span class="stat-icon blue">✓</span></div>
+              <strong id="approved-count">13</strong
+              ><small><em>↑ 3</em> approved this week</small
+              ><i class="progress blue-bar"></i>
+            </article>
+            <article class="stat">
+              <div>ACTION REQUIRED <span class="stat-icon red">!</span></div>
+              <strong id="action-count">03</strong
+              ><small>Documents to update</small
+              ><i class="progress red-bar"></i>
+            </article>
+          </section>
+
+          <div class="columns">
+            <section class="panel requests" id="requests">
+              <div class="panel-head">
+                <div>
+                  <p class="overline">TRACK YOUR PROGRESS</p>
+                  <h2>
+                    Recent clearance requests
+                    <small id="request-total">24</small>
+                  </h2>
+                </div>
+                <button class="link-button" id="view-all">View all →</button>
+              </div>
+              <div class="toolbar">
+                <div class="tabs" role="group" aria-label="Filter requests">
+                  <button class="tab selected" data-filter="all">
+                    All <span>24</span></button
+                  ><button class="tab" data-filter="pending">
+                    Pending <span>8</span></button
+                  ><button class="tab" data-filter="approved">
+                    Approved <span>13</span></button
+                  ><button class="tab" data-filter="action">
+                    Action needed <span>3</span>
+                  </button>
+                </div>
+                <label class="search"
+                  >⌕
+                  <input
+                    id="search"
+                    type="search"
+                    placeholder="Search requests"
+                    aria-label="Search requests"
+                /></label>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>REQUEST</th>
+                      <th>DEPARTMENT</th>
+                      <th>SUBMITTED</th>
+                      <th>STATUS</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="request-rows">
+                    <tr data-status="pending">
+                      <td>
+                        <b>Faculty clearance</b><small>FC-2025-024</small>
+                      </td>
+                      <td>Library Services</td>
+                      <td>Oct 15, 2025</td>
+                      <td><span class="status pending">● Pending</span></td>
+                      <td>
+                        <button class="row-open" aria-label="View FC-2025-024">
+                          ↗
+                        </button>
+                      </td>
+                    </tr>
+                    <tr data-status="action">
+                      <td>
+                        <b>Graduation clearance</b><small>FC-2025-021</small>
+                      </td>
+                      <td>Finance Office</td>
+                      <td>Oct 14, 2025</td>
+                      <td>
+                        <span class="status action">● Action needed</span>
+                      </td>
+                      <td>
+                        <button class="row-open" aria-label="View FC-2025-021">
+                          ↗
+                        </button>
+                      </td>
+                    </tr>
+                    <tr data-status="approved">
+                      <td>
+                        <b>Faculty clearance</b><small>FC-2025-019</small>
+                      </td>
+                      <td>Department of Biology</td>
+                      <td>Oct 12, 2025</td>
+                      <td><span class="status approved">● Approved</span></td>
+                      <td>
+                        <button class="row-open" aria-label="View FC-2025-019">
+                          ↗
+                        </button>
+                      </td>
+                    </tr>
+                    <tr data-status="pending">
+                      <td>
+                        <b>Research lab access</b><small>FC-2025-016</small>
+                      </td>
+                      <td>Research Office</td>
+                      <td>Oct 10, 2025</td>
+                      <td><span class="status pending">● Pending</span></td>
+                      <td>
+                        <button class="row-open" aria-label="View FC-2025-016">
+                          ↗
+                        </button>
+                      </td>
+                    </tr>
+                    <tr data-status="approved">
+                      <td>
+                        <b>Faculty clearance</b><small>FC-2025-013</small>
+                      </td>
+                      <td>Human Resources</td>
+                      <td>Oct 08, 2025</td>
+                      <td><span class="status approved">● Approved</span></td>
+                      <td>
+                        <button class="row-open" aria-label="View FC-2025-013">
+                          ↗
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="empty" id="empty" hidden>
+                  No requests match this filter.
+                </p>
+              </div>
+              <div class="table-footer">
+                Showing <b id="showing-count">5</b> of 24 requests
+                <span
+                  ><button disabled>←</button> 1 of 5
+                  <button id="next-page">→</button></span
+                >
+              </div>
+            </section>
+
+            <aside class="side-panels">
+              <section class="panel departments" id="departments">
+                <div class="panel-head">
+                  <div>
+                    <p class="overline">APPROVAL PROGRESS</p>
+                    <h2>By department</h2>
+                  </div>
+                  <button
+                    class="more"
+                    id="department-more"
+                    aria-label="Department options"
+                  >
+                    ···
+                  </button>
+                </div>
+                <div class="department">
+                  <span class="dept-icon green">L</span
+                  ><span
+                    ><b>Library Services</b
+                    ><small>18 of 24 cleared</small></span
+                  ><strong>75%</strong><i><b style="width: 75%"></b></i>
+                </div>
+                <div class="department">
+                  <span class="dept-icon blue">F</span
+                  ><span
+                    ><b>Finance Office</b><small>16 of 24 cleared</small></span
+                  ><strong>67%</strong><i><b style="width: 67%"></b></i>
+                </div>
+                <div class="department">
+                  <span class="dept-icon amber">D</span
+                  ><span
+                    ><b>Academic Department</b
+                    ><small>20 of 24 cleared</small></span
+                  ><strong>83%</strong><i><b style="width: 83%"></b></i>
+                </div>
+                <div class="department">
+                  <span class="dept-icon red">R</span
+                  ><span
+                    ><b>Research Office</b><small>12 of 24 cleared</small></span
+                  ><strong>50%</strong><i><b style="width: 50%"></b></i>
+                </div>
+                <button class="link-button directory" id="directory">
+                  Department directory →
+                </button>
+              </section>
+              <section class="help">
+                <span>?</span>
+                <div>
+                  <p class="overline">NEED A HAND?</p>
+                  <b>Clearance help desk</b>
+                  <p>
+                    Find answers about required documents and approval
+                    timelines.
+                  </p>
+                  <button id="help-button">Visit support ↗</button>
+                </div>
+              </section>
+            </aside>
+          </div>
+          <footer>
+            FACULTY CLEARANCE MANAGEMENT SYSTEM · FCMS
+            <span>Last synced just now <i></i></span>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="request-dialog">
+      <form id="request-form">
+        <div class="dialog-head">
+          <div>
+            <p class="overline">ACADEMIC SERVICES</p>
+            <h2>New clearance request</h2>
+          </div>
+          <button type="button" id="close-dialog" aria-label="Close">×</button>
+        </div>
+        <label
+          >Request type<select name="type">
+            <option>Faculty clearance</option>
+            <option>Graduation clearance</option>
+            <option>Research lab access</option>
+            <option>Other</option>
+          </select></label
+        ><label
+          >Department<select name="department">
+            <option>Library Services</option>
+            <option>Finance Office</option>
+            <option>Academic Department</option>
+            <option>Research Office</option>
+            <option>Human Resources</option>
+          </select></label
+        ><label
+          >Notes <small>OPTIONAL</small
+          ><textarea
+            name="notes"
+            rows="3"
+            placeholder="Details for the reviewing department"
+          ></textarea>
+        </label>
+        <div class="dialog-actions">
+          <button type="button" class="secondary" id="cancel-dialog">
+            Cancel</button
+          ><button class="primary-button">Submit request</button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
